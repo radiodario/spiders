@@ -36,7 +36,7 @@ function spiderChart() {
 				}
 			})
 
-			console.log(data, scales.domain())
+			//console.log(data, scales.domain())
 			// select the svg element if it exists
 			var svg = d3.select(this).selectAll("svg").data([data])
 
@@ -115,7 +115,7 @@ function spiderChart() {
 
 			// update the title
 			g.select('.title')
-				.text(function(d) { console.log(title); return title; })
+				.text(function(d) { return title; })
 				.attr("y", height/2)
 				.attr("dy", "-1em")
 				.style("text-anchor", "middle");
@@ -127,7 +127,6 @@ function spiderChart() {
 				.style("font-size", "9px")
 				.attr("dy", "-0.1em")
 				.attr("y", height/2)
-
 				.style("text-anchor", "middle");
 
 
@@ -135,26 +134,7 @@ function spiderChart() {
 			g.select('.spider')
 	    	.style("fill", "#000")
 	    	.style("opacity", 0.8)
-	    	.attr("d", line)
-				// .attr("d", function(e, i) {
-			 //    	console.log(e, i);
-			 //        return line()(e, i) + "Z";
-			 //    });
-
-			// update the spider chart
-			g.select('.spider')
-		    // .style("fill", "#009933")
-		    // .style("opacity", 0.5)
-		    // .attr("d", function(e, i) {
-		    // 	return line()(zeros) + "Z";
-		    // })
-		    // .transition()
-		    // .duration(1000)
-		    // .attr("d", function(e, i) {
-		    // 	console.log(e, i);
-		    //     return line()(e) + "Z";
-		    // });
-
+	    	.attr("d", line);
 
 		});
 	}
@@ -186,11 +166,11 @@ function spiderChart() {
   	var max = scales.domain()[1] > 0 ? scales.domain()[1] : 1;
   	var increase = max/ticks;
 
-  	console.log("building axis", length, ticks, min, max, increase)
+  	//console.log("building axis", length, ticks, min, max, increase)
   	gridData = []
   	for (var i = 0; i <= ticks; i++ ) {
   		val = min + i*increase;
-  		var d = {value:val};
+  		var d = [val];
   		gridPoints = [];
   		for (var j = 0; j <= length; j++) {
   			gridPoints.push({
