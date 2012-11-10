@@ -40,7 +40,8 @@ define([], function() {
 	];
 
 	//console.log(stackedChart)
-  var stacked = stackedChart();
+  var stacked = stackedChart()
+  	.yAxisTitle("Fruit Impact (Millions of Gallons of Juice)");
   d3.select('#stacked-chart')
   	.datum(stackedData)
   	.call(stacked);
