@@ -1,1 +1,23 @@
 @import "compass_twitter_bootstrap";
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: #fff;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  fill: none;
+  stroke: #000;
+}
+
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}

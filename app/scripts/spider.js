@@ -9,6 +9,7 @@ function spiderChart() {
 			ticks = 4, // how many ticks on the grid?
       value = function(d) { return d[0]; },
       label = function(d) { return d[1]; },
+      duration = 1000,
       title = "spider chart",
       subtitle = "blah";
 	// make some scales
@@ -73,9 +74,10 @@ function spiderChart() {
 			// add the axes
 			var ax = g.select("g.axes").selectAll("g.axis")
 				.data(data)
-				.enter().append("g").attr("class", "axis");
+				
+			var axEnter = ax.enter().append("g").attr("class", "axis");
 
-			ax.append("svg:text")
+			axEnter.append("svg:text")
 				.style("text-anchor", function(d, i) {
 						var x = Math.sin(angle(i, data.length)) * scales(scales.domain()[1]);
 						if (Math.abs(x) < 0.1) {
@@ -104,8 +106,8 @@ function spiderChart() {
 				.attr("x", function(d, i) { return Math.sin(angle(i, data.length)) * scales(scales.domain()[1]);})
 				.attr("y", function(d, i) { return Math.cos(angle(i, data.length)) * scales(scales.domain()[1]);});
 
-			ax.append("svg:line")
-			    .style("stroke", "#000")
+			axEnter.append("svg:line")
+			   .style("stroke", "#000")
 				.style("fill", "none")
 	    	.style("opacity", 0.1)
 				.attr("x1", function(d, i) { return Math.sin(angle(i, data.length)) * scales(scales.domain()[0]);})
@@ -132,6 +134,8 @@ function spiderChart() {
 
 			// update the spider line
 			g.select('.spider')
+				.transition()
+				.duration(duration)
 	    	.style("fill", "#000")
 	    	.style("opacity", 0.8)
 	    	.attr("d", line);
