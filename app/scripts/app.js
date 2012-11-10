@@ -1,8 +1,9 @@
 define([], function() {
     // var data = [{a : 1, b: 3, c: 5, d: 3, e:4, f:2}];
 
-  setInterval(function() {
+  //setInterval(function() {
 
+  function buildCharts() {
 
 	var data =[[Math.random(), 'Strength'], 
 						 [Math.random(), 'Constitution'], 
@@ -11,7 +12,7 @@ define([], function() {
 						 [Math.random(),'Wisdom'], 
 						 [Math.random(),'Charisma']];
 
-	var chart = spiderChart();
+	var chart = spiderChart().duration(100);
   d3.select('#spider-chart')
   	.datum(data)
   	.call(chart);
@@ -44,6 +45,10 @@ define([], function() {
   	.datum(stackedData)
   	.call(stacked);
 
-   }, 1000);
+	}
+
+	buildCharts();
+
+	setInterval(buildCharts, 10000);
 
 });

@@ -9,7 +9,7 @@ function spiderChart() {
 			ticks = 4, // how many ticks on the grid?
       value = function(d) { return d[0]; },
       label = function(d) { return d[1]; },
-      duration = 1000,
+      duration = 50,
       title = "spider chart",
       subtitle = "blah";
 	// make some scales
@@ -229,8 +229,14 @@ function spiderChart() {
   chart.subtitle = function(_) {
     if (!arguments.length) return subtitle;
     subtitle = _;
-    return subtitle;
+    return chart;
   };
+
+  chart.duration = function(_) {
+  	if (!arguments.length) return duration;
+  	duration = _;
+  	return chart;
+  }
 
 
   return chart;
