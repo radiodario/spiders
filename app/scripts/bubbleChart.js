@@ -89,15 +89,10 @@ function bubbleChart() {
 				.style("fill", function(d, i) {return colors(i)});
 
 			g.selectAll("text.label")
-				.style("font-size", function(d) { 
-                        var size = d.r/3
-                        // if (size < 11) {
-                        //     return '10pt';
-                        // } else {
-                            return size + 'pt';
-                        // }
-                    })
+				.transition()
+				.duration(duration)
 				.text(function (d) { return d.name;})
+				.style("font-size", function(d) { return (d.r/3) + 'pt';})
 
 
 		});

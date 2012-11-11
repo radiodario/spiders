@@ -1,7 +1,7 @@
 define([], function() {
     // var data = [{a : 1, b: 3, c: 5, d: 3, e:4, f:2}];
 
-   var time = 2000;
+   var time = 500;
 
   //setInterval(function() {
 
@@ -76,8 +76,8 @@ define([], function() {
 	  	]
 		};
 
-		var bubbles = bubbleChart();
-			//.duration(time)
+		var bubbles = bubbleChart()
+			.duration(time);
 		d3.select('#bubble-chart')
 			.datum(bubbleData)
 			.call(bubbles);
