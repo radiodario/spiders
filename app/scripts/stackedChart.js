@@ -1,6 +1,6 @@
 function stackedChart() {
 
-  var margin = {top:30, bottom:30, left:100, right:100};
+  var margin = {top:50, bottom:30, left:100, right:100};
   var height = 400;
   var width  = 1000;
   var xValue = function(d) { return d.date };
@@ -15,13 +15,13 @@ function stackedChart() {
   var xAxis  = d3.svg.axis().scale(xScale).orient("bottom");
   var yAxis  = d3.svg.axis().scale(yScale).orient("left");
   var area   = d3.svg.area().interpolate(interpolate).x(X).y0(Y0).y1(Y1);
-  var title  = 'chart title';
-  var yAxisTitle = 'Something';
+  var title  = 'Chart Title';
+  var yAxisTitle = 'Axis Title';
   var duration = 1000;
 
   function chart (selection) {
     selection.each(function(data) {
-    
+
       // convert the data to an appropriate representation
       data = d3.layout.stack()
                 .offset(offset)
@@ -31,14 +31,12 @@ function stackedChart() {
                 .y(yValue)
                 (data); // we pass the data as context
 
-      console.log(data);
 
       // setup the scales
       // x scale
       xScale.range([0, width - margin.left - margin.right]);
 
       var maxDates = data.map(function(d) {
-        console.log(d)
         return d3.max(d.values, function(dt) {
           return dt.x
         });
@@ -82,7 +80,8 @@ function stackedChart() {
         .attr("text-anchor", "end");
       gEnter.append("svg:text").attr("class", "chartTitle label")
         .attr("text-anchor", "middle")
-        .attr("transform", "translate(" + width /2 + "," + margin.top + ")");
+        .attr("dy", "1em")
+        .attr("transform", "translate(" + (width - margin.left - margin.right + 20) /2 + "," + (-margin.top) + ")");
       gEnter.append("g")
         .attr("class","legend")
         .attr("transform","translate(" + (width - margin.left - margin.right + 20) + "," + margin.top + ")")
@@ -186,7 +185,6 @@ function stackedChart() {
       // add tooltips
       g.selectAll('g.circle')
         .tooltip(function(d, i) {
-          console.log(d);
           var format = d3.format(',f');
           var tformat = d3.time.format.utc('%Y-%m-%d')
           var r, svg;
