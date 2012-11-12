@@ -1,7 +1,7 @@
 define([], function() {
     // var data = [{a : 1, b: 3, c: 5, d: 3, e:4, f:2}];
 
-   var time = 500;
+   var time = 5000;
 
   //setInterval(function() {
 
@@ -62,17 +62,17 @@ define([], function() {
 	  	.datum(stackedData)
 	  	.call(stacked);
 
+
+
 	  var bubbleData = {
 	  	name : 'something',
 	  	count : 100*Math.random(),
 	  	values : [
-	  		{name : 'Sorrow', count: Math.random()},
-	  		{name : 'Joy', count: Math.random()},
-	  		{name : 'Love', count: Math.random()},
-	  		{name : 'Desire', count: Math.random()},
-	  		{name : 'Loathe', count: Math.random()},
-	  		{name : 'Fear', count: Math.random()},
-	  		{name : 'Anger', count: Math.random()}
+	  		{name : 'Sweet', count: Math.random()},
+	  		{name : 'Sour', count: Math.random()},
+	  		{name : 'Salty', count: Math.random()},
+	  		{name : 'Bitter', count: Math.random()},
+	  		{name : 'Umami', count: Math.random()}
 	  	]
 		};
 
@@ -82,6 +82,35 @@ define([], function() {
 			.datum(bubbleData)
 			.call(bubbles);
 
+
+		// SPARKLINES
+		var races = 200;
+		var drivers = ['vet', 'alo', 'rai'];
+		var raceData = drivers.map(function(driver) {
+			return {
+				id : driver,
+				pos : genPos(races)
+			}
+		});
+
+		function genPos(races) {
+			var a = []
+			for (var i = 0; i < races; i++) {
+				a.push(22*Math.random());
+			}
+			return a;
+		}
+
+		var spark = sparkline()
+			.duration(time)
+			.height(20)
+			.width(300);
+
+		raceData.forEach(function(data) {
+			d3.select('#' + data.id)
+				.datum(data.pos)
+				.call(spark);
+		})
 
 
 	}

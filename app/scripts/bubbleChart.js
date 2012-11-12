@@ -1,5 +1,4 @@
 // a bubble chart
-
 function bubbleChart() {
 	var margin = {top:10, right:10, bottom:10, left:10};
 	var width  = 200;
@@ -15,6 +14,7 @@ function bubbleChart() {
 	function chart (selection) {
 		selection.each(function(data) {
 
+
 			// prep the data
 			var categories = {
 				"name" : "",
@@ -22,9 +22,29 @@ function bubbleChart() {
 				"children" : []
 			}
 
+			// count the total of the categories
+			var sum = 0;
+
 			data.values.forEach(function(cat) {
 				categories.children.push(cat);
+				sum += value(cat); 
 			});
+
+			// if there's no sentiment data, add a message
+			if (sum === 0) {
+				//
+				d3.select(this)
+					.style("with", width + 'px')
+					.style("height", (height) + 'px')
+					.append('div')
+					 .style("margin-top", (height/2)-14 + 'px')
+					 
+					// .append('span')
+					.attr("class", "alert")
+					.text('No data available!')
+
+				return
+			}
 
 			// adjust the bubble generator (in case we've changed height/width/value)
 			bubble.sort(null)
@@ -63,6 +83,7 @@ function bubbleChart() {
 
 			var node = nodesEnter.append('g')
 				.attr("class", "node")
+				.attr("transform", function(d) { return "translate(" + d.x + "," + (d.y + offset) + ")";})
 				
 			node.append("circle")
 				.attr("r", 0)
@@ -75,6 +96,7 @@ function bubbleChart() {
 				.attr("text-anchor", "middle")
 				.attr("dy", ".3em")
 				.style("fill", "#fff")
+				.style("font-size", '0em')
 
 			g.selectAll("g.node")
 				.transition()
@@ -91,6 +113,7 @@ function bubbleChart() {
 			g.selectAll("text.label")
 				.transition()
 				.duration(duration)
+				.attr("dy", ".3em")
 				.text(function (d) { return d.name;})
 				.style("font-size", function(d) { return (d.r/3) + 'pt';})
 
