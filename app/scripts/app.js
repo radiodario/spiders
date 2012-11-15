@@ -113,6 +113,22 @@ define([], function() {
 		})
 
 
+		// tables
+		var tabledata = {
+			headers: ["Fruit", "Sales", "Quality"],
+			rows : [
+				["Apples", Math.random()*1000, Math.random()*10],
+				["Pears", Math.random()*1000, Math.random()*10],
+				["Oranges", Math.random()*1000, Math.random()*10]
+			]
+		}
+
+		var tabl = table()
+
+		d3.select('#table-chart').datum(tabledata)
+			.call(tabl)
+
+
 	}
 
 	buildCharts();
