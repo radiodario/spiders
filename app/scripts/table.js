@@ -4,8 +4,6 @@ function table() {
 
   function chart(selection) {
     selection.each(function(data) {
-
-      console.log(data)
       
       // Select the table element, if it exists.
       var table = d3.select(this).selectAll("table").data([data]);
