@@ -129,6 +129,24 @@ define([], function() {
 			.call(tabl)
 
 
+		// maps
+
+		var mapchart = map()
+
+		mapchart.center({"lat":39.90403,"lon":116.407526})
+						.duration(time)
+
+		d3.json('locations.json', function(data) {
+
+			data.forEach(function(d) { d.count = Math.random() * 100})
+
+			d3.select('#map-chart').datum(data).call(mapchart);
+
+
+		})
+
+
+
 	}
 
 	buildCharts();
