@@ -24,6 +24,8 @@ function table() {
       var rows = table.select('tbody').selectAll('tr').data(function(d) {return d.rows})
       rowsEnter = rows.enter().append('tr')
 
+      rows.exit.remove()
+
       var cells = rows.selectAll('td').data(function(d) {
             return d;
         })

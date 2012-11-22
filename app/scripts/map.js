@@ -6,7 +6,7 @@ function map() {
   var center = {lat: 40.00, lon:-75.1642};
   var zoom = 4;
   var api_key = "cab4b4cb386f4890b042a94ef2b87332"; // http://cloudmade.com/register
-  
+  var format = d3.format('n')
   var colorScale = d3.scale.linear().range(["#FE326B","#888","#64C832"]);
   var sizeScale = d3.scale.linear().range([0,10]);
   var duration = 1000;
@@ -70,7 +70,7 @@ function map() {
           .attr("rel", "tooltip")
           .attr("r", 0)
           .attr("title", function(d) { 
-            return "something"
+            return d.en + ": "+format(d.count)
           })
           .attr("transform", function(d) {
             
@@ -103,6 +103,7 @@ function map() {
           });
       });
 
+      $('circle').tooltip();
 
     });
   }

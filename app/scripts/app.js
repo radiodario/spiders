@@ -1,7 +1,7 @@
 define([], function() {
     // var data = [{a : 1, b: 3, c: 5, d: 3, e:4, f:2}];
 
-   var time = 5000;
+   var time = 500;
 
   //setInterval(function() {
 
