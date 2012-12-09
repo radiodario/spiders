@@ -28,30 +28,31 @@ function face() {
         console.log(data, r);
 
         var svg = d3.select(this).selectAll('svg').data([data])
-        var face = svg.enter()
+        var faceEnter = svg.enter()
             .append("svg")
             .append("g").attr("class", "face");
         // add the head circle
-        var head = face.append("svg:circle")
+        faceEnter.append("svg:circle")
             .attr("class", "head")
-            .attr("fill-opacity", .8)
-            .attr("stroke", "none");     
+            .attr("stroke", "none")
+            .attr("fill", "#333")
+            .attr("r", r);    
         // add the mouth
-        var mouth = face.append("svg:path")
+        faceEnter.append("svg:path")
             .attr("class", "mouth")
             .attr("stroke", "none")
             .attr("stroke-width", 4)
             .attr("fill", "#fff")
             .attr("transform", "translate(" + [0, r/3] + ")")
         // add the left eye
-        var left_eye = face.append("svg:circle")
+        faceEnter.append("svg:circle")
             .attr("class", "eye")
             .attr("stroke", "none")
             .attr("fill", "#fff")
             .attr("stroke-width", 4)
             .attr("transform", "translate(" + [-r/2.5, -r/3] + ")")
         // and the right eye
-        var right_eye = face.append("svg:circle")
+        faceEnter.append("svg:circle")
             .attr("class", "eye")
             .attr("stroke", "none")
             .attr("fill", "#fff")
@@ -64,12 +65,12 @@ function face() {
           .attr('height', height);
 
         // update the inner dimensions
-        var g = svg.select('g.face')
+        var face = svg.select('g.face')
           .attr('transform', 'translate(' + (margin.top + r) + ',' + (margin.bottom + r) + ')');
 
         // the mouth point positions
         var mouth = { 
-          x : [10, 50, 90],
+          x : [0, 50, 100],
           y : [50, data, 50] 
         };
 
@@ -85,18 +86,20 @@ function face() {
             .interpolate("basis");
 
         // update the head
-        g.selectAll('.head')
-          .attr("fill", function(d){ return color(d); })
+        face.select('circle.head')
+          .transition()
+          .duration(duration)
+          .attr("fill", function(d) { console.log(d); return color(d); })
           .attr("r", r);
 
         // update the mouth
-        g.selectAll('.mouth')
+        face.selectAll('.mouth')
           .transition()
           .duration(duration)
           .attr("d", mouth_line(mouth.x));
             
         // update the eyes
-        g.selectAll('.eye')
+        face.selectAll('.eye')
           .attr("r", r * eyeSize);
 
 
