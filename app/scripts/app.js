@@ -143,6 +143,13 @@ define([], function() {
 			d3.select('#map-chart').datum(data).call(mapchart);
 
 
+		// face
+
+		var facechart = face()
+
+		d3.select('#face-chart').datum(Math.random()*100).call(facechart);
+
+
 		})
 
 
