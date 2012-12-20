@@ -7,7 +7,7 @@ define([], function() {
 
   function buildCharts() {
 
-  	var howMany = 1000000000 * Math.random()
+  	var howMany = 100;
   	// generate some random data to mimic a csv
   	var genres = ['dubstep', 'trap', 'funk', 'chillwave', 'witch house'];
   	var years = ['2007', '2011'];
@@ -27,7 +27,10 @@ define([], function() {
 
   	// the bar chart object 
   	var bar = groupedBarChart()
-  		.duration(time)
+  		.yAxisTitle('Youtube likes')
+  		.title('Most popular youtube music genres')
+  		.duration(500)
+  		.width($('.container').width())
   		.category(function(d) { return d.genre })
 
 		d3.select('#bar-chart')

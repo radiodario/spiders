@@ -3,7 +3,7 @@ function groupedBarChart() {
 
   var width   = 600;
   var height  = 200;
-  var margin  = {top:10, right:10, bottom:30, left:60};
+  var margin  = {top:20, right:70, bottom:30, left:60};
   var title   = "Chart Title";
   var duration = 1000;
   var x0       = d3.scale.ordinal();
@@ -11,11 +11,12 @@ function groupedBarChart() {
   var y       = d3.scale.linear().nice();
   var categoryValue  = function(d) { return d.name };
   var groupValue  = function(d) { return d.value }; 
-  var colors  = d3.scale.category10();
+  var colours  = d3.scale.category10();
   var yAxis = d3.svg.axis().orient('left').tickFormat(d3.format(".2s")).ticks(4);
   var xAxis = d3.svg.axis().orient('bottom');
   var yAxisTitle = "Y Axis";
   var xAxisTitle = "X Axis";
+  var title = "Chart Title";
   
   function chart(selection) {
     selection.each(function (data) {
@@ -28,7 +29,7 @@ function groupedBarChart() {
 
       // update the scales
       x0
-        .rangeRoundBands([0, w], 0.1)               // output rangeBands with spacing
+        .rangeRoundBands([0, w], 0.2)               // output rangeBands with spacing
         .domain(data.categories);
 
       x1
@@ -47,6 +48,8 @@ function groupedBarChart() {
       yAxis.scale(y)
       xAxis.scale(x0);
 
+      var groupNames = data.groups;
+
       data = data.map(function(category) {
         return {
           name: categoryValue(category),
@@ -64,8 +67,20 @@ function groupedBarChart() {
       var gEnter = svg.enter().append('svg').append('g');
       gEnter.append('g').attr('class', 'categories');
       gEnter.append('g').attr('class', 'x axis');
-      gEnter.append('g').attr('class', 'y axis');
-      gEnter.append('g').attr('class', 'title');
+      gEnter.append('g').attr('class', 'y axis').append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".72em")
+        .attr("class", "y axis label")
+        .attr("text-anchor", "end");
+      gEnter.append("svg:text").attr("class", "title label")
+        .attr("text-anchor", "middle")
+        .attr("dy", "1em")
+        .attr("transform", "translate(" + (w + 20) /2 + "," + (-margin.top) + ")");
+      gEnter.append('g').attr('class', 'legend')
+        .attr("transform","translate(" + (w) + "," + margin.top + ")")
+        .style("font-size","12px");
+
 
 
       // reassign data
@@ -85,20 +100,52 @@ function groupedBarChart() {
         .duration(duration)
         .remove();
 
-      var groups = category.selectAll('rect')
+      var groups = category.selectAll('rect.bar')
         .data(function(d) {
           return d.groups;
         })
 
       var groupEnter = groups.enter()
         .append('svg:rect')
+        .attr('class', 'bar')
         .attr('width', x1.rangeBand())
         .attr('x', function(d) { return x1(d.name)})
         .attr('y', function(d) { return h})
         .attr('height', function(d) { return 0})
-        .style('fill', function(d, i) { return colors(i)});
+        .style('fill', function(d, i) { return colours(i)});
 
-      
+
+      var legendItem = svg.select('.legend').selectAll('.legendItem')
+        .data(groupNames)
+
+      var legendItemEnter = legendItem.enter()
+
+      var legendItem = legendItemEnter
+        .append('svg:g')
+        .attr('class', 'legendItem')
+        .attr('transform', function(d, i) {
+          return 'translate(0,' + 20 * i + ')';
+        });
+
+      legendItem.append('svg:text')
+        .attr('x', 20)
+        // .attr('width', 18)
+        // .attr('height', 18)
+        .attr('class', 'label')
+        .attr('y', 0)
+        .text(function(d) {
+          return d;
+        })
+      legendItem.append('svg:rect')
+        .attr('class', 'legendColor')
+        .attr('x', 0)
+        .attr('y', -12)
+        .attr('width', 15)
+        .attr('height', 15)
+        .style('fill', function(d, i) {
+          return colours(i)
+        })
+
 
       // update the outer dims
       svg
@@ -111,7 +158,7 @@ function groupedBarChart() {
 
 
       // update the bars
-      g.selectAll('rect')
+      g.selectAll('rect.bar')
         .transition()
         .duration(duration)
         .attr('y', function(d) { return y(d.value)})
@@ -128,8 +175,11 @@ function groupedBarChart() {
         .duration(duration)
         .call(xAxis)
 
+      g.select(".y.axis.label")
+        .text(yAxisTitle);
 
-
+      g.select(".title.label")
+        .text(title)
 
     })
   }
@@ -187,6 +237,20 @@ function groupedBarChart() {
     if (!arguments.length) return y;
     y = _;
     return chart;
+  };
+
+  // for americans
+  chart.colors = function(_) {
+    if (!arguments.length) return colours;
+    y = _;
+    return colours;
+  };
+
+  // for brits
+  chart.colours = function(_) {
+    if (!arguments.length) return colours;
+    y = _;
+    return colours;
   };
 
   chart.category = function(_) {
