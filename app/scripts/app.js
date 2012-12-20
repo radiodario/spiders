@@ -39,150 +39,150 @@ define([], function() {
 
 
 
-		// var data =[[Math.random(), 'Strength'], 
-		// 					 [Math.random(), 'Constitution'], 
-		// 					 [Math.random(),'Dexterity'], 
-		// 					 [Math.random(),'Intelligence'], 
-		// 					 [Math.random(),'Wisdom'], 
-		// 					 [Math.random(),'Charisma']];
+		var data =[[Math.random(), 'Strength'], 
+							 [Math.random(), 'Constitution'], 
+							 [Math.random(),'Dexterity'], 
+							 [Math.random(),'Intelligence'], 
+							 [Math.random(),'Wisdom'], 
+							 [Math.random(),'Charisma']];
 
-		// var chart = spiderChart().duration(time);
-	 //  d3.select('#spider-chart')
-	 //  	.datum(data)
-	 //  	.call(chart);
+		var chart = spiderChart().duration(time);
+	  d3.select('#spider-chart')
+	  	.datum(data)
+	  	.call(chart);
 
 	 
-	 //  var stackedData = [
-		// 	{
-		//     "name": "apples",
-		//     "values": [
-		//       { "x": new Date('2012-01-01'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-02'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-03'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-04'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-05'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-06'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-07'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-08'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-09'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-10'), "y":  100*Math.random()}
-		//     ]
-		//   },
-		//   {  
-		//     "name": "oranges",
-		//     "values": [
-		// 			{ "x": new Date('2012-01-01'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-02'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-03'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-04'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-05'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-06'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-07'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-08'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-09'), "y":  100*Math.random()},
-		//       { "x": new Date('2012-01-10'), "y":  100*Math.random()}
-		//     ]
-		//   }
-		// ];
+	  var stackedData = [
+			{
+		    "name": "apples",
+		    "values": [
+		      { "x": new Date('2012-01-01'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-02'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-03'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-04'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-05'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-06'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-07'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-08'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-09'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-10'), "y":  100*Math.random()}
+		    ]
+		  },
+		  {  
+		    "name": "oranges",
+		    "values": [
+					{ "x": new Date('2012-01-01'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-02'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-03'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-04'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-05'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-06'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-07'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-08'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-09'), "y":  100*Math.random()},
+		      { "x": new Date('2012-01-10'), "y":  100*Math.random()}
+		    ]
+		  }
+		];
 
-		// //console.log(stackedChart)
-	 //  var stacked = stackedChart()
-	 //  	.duration(time)
-	 //  	.title("Are oranges more popular than apples?")
-	 //  	.yAxisTitle("Fruit Impact (Millions of Gallons of Juice)");
-	 //  d3.select('#stacked-chart')
-	 //  	.datum(stackedData)
-	 //  	.call(stacked);
-
-
-
-	 //  var bubbleData = {
-	 //  	name : 'something',
-	 //  	count : 100*Math.random(),
-	 //  	values : [
-	 //  		{name : 'Sweet', count: Math.random()},
-	 //  		{name : 'Sour', count: Math.random()},
-	 //  		{name : 'Salty', count: Math.random()},
-	 //  		{name : 'Bitter', count: Math.random()},
-	 //  		{name : 'Umami', count: Math.random()}
-	 //  	]
-		// };
-
-		// var bubbles = bubbleChart()
-		// 	.duration(time);
-		// d3.select('#bubble-chart')
-		// 	.datum(bubbleData)
-		// 	.call(bubbles);
+		//console.log(stackedChart)
+	  var stacked = stackedChart()
+	  	.duration(time)
+	  	.title("Are oranges more popular than apples?")
+	  	.yAxisTitle("Fruit Impact (Millions of Gallons of Juice)");
+	  d3.select('#stacked-chart')
+	  	.datum(stackedData)
+	  	.call(stacked);
 
 
-		// // SPARKLINES
-		// var races = 200;
-		// var drivers = ['vet', 'alo', 'rai'];
-		// var raceData = drivers.map(function(driver) {
-		// 	return {
-		// 		id : driver,
-		// 		pos : genPos(races)
-		// 	}
-		// });
 
-		// function genPos(races) {
-		// 	var a = []
-		// 	for (var i = 0; i < races; i++) {
-		// 		a.push(22*Math.random());
-		// 	}
-		// 	return a;
-		// }
+	  var bubbleData = {
+	  	name : 'something',
+	  	count : 100*Math.random(),
+	  	values : [
+	  		{name : 'Sweet', count: Math.random()},
+	  		{name : 'Sour', count: Math.random()},
+	  		{name : 'Salty', count: Math.random()},
+	  		{name : 'Bitter', count: Math.random()},
+	  		{name : 'Umami', count: Math.random()}
+	  	]
+		};
 
-		// var spark = sparkline()
-		// 	.duration(time)
-		// 	.height(20)
-		// 	.width(300);
-
-		// raceData.forEach(function(data) {
-		// 	d3.select('#' + data.id)
-		// 		.datum(data.pos)
-		// 		.call(spark);
-		// })
+		var bubbles = bubbleChart()
+			.duration(time);
+		d3.select('#bubble-chart')
+			.datum(bubbleData)
+			.call(bubbles);
 
 
-		// // tables
-		// var tabledata = {
-		// 	headers: ["Fruit", "Sales", "Quality"],
-		// 	rows : [
-		// 		["Apples", Math.random()*1000, Math.random()*10],
-		// 		["Pears", Math.random()*1000, Math.random()*10],
-		// 		["Oranges", Math.random()*1000, Math.random()*10]
-		// 	]
-		// }
+		// SPARKLINES
+		var races = 200;
+		var drivers = ['vet', 'alo', 'rai'];
+		var raceData = drivers.map(function(driver) {
+			return {
+				id : driver,
+				pos : genPos(races)
+			}
+		});
 
-		// var tabl = table()
+		function genPos(races) {
+			var a = []
+			for (var i = 0; i < races; i++) {
+				a.push(22*Math.random());
+			}
+			return a;
+		}
 
-		// d3.select('#table-chart').datum(tabledata)
-		// 	.call(tabl)
+		var spark = sparkline()
+			.duration(time)
+			.height(20)
+			.width(300);
 
-
-		// // maps
-
-		// var mapchart = map()
-
-		// mapchart.center({"lat":39.90403,"lon":116.407526})
-		// 				.duration(time)
-
-		// d3.json('locations.json', function(data) {
-
-		// 	data.forEach(function(d) { d.count = Math.random() * 100})
-
-		// 	d3.select('#map-chart').datum(data).call(mapchart);
-
-
-		// // face
-
-		// var facechart = face().duration(time)
-
-		// d3.select('#face-chart').datum(Math.random()*100).call(facechart);
+		raceData.forEach(function(data) {
+			d3.select('#' + data.id)
+				.datum(data.pos)
+				.call(spark);
+		})
 
 
-		// })
+		// tables
+		var tabledata = {
+			headers: ["Fruit", "Sales", "Quality"],
+			rows : [
+				["Apples", Math.random()*1000, Math.random()*10],
+				["Pears", Math.random()*1000, Math.random()*10],
+				["Oranges", Math.random()*1000, Math.random()*10]
+			]
+		}
+
+		var tabl = table()
+
+		d3.select('#table-chart').datum(tabledata)
+			.call(tabl)
+
+
+		// maps
+
+		var mapchart = map()
+
+		mapchart.center({"lat":39.90403,"lon":116.407526})
+						.duration(time)
+
+		d3.json('locations.json', function(data) {
+
+			data.forEach(function(d) { d.count = Math.random() * 100})
+
+			d3.select('#map-chart').datum(data).call(mapchart);
+
+
+		// face
+
+		var facechart = face().duration(time)
+
+		d3.select('#face-chart').datum(Math.random()*100).call(facechart);
+
+
+		})
 
 
 
