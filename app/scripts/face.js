@@ -128,9 +128,9 @@ function face() {
     return chart;
   }; 
 
-  chart.interpolate = function(_) {
-    if (!arguments.length) return interpolate;
-    interpolate = _;
+  chart.duration = function(_) {
+    if (!arguments.length) return duration;
+    duration = _;
     return chart;
   };
 
